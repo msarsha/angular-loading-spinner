@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('sarsha.spinner', [])
+        .module('sarsha.spinner', ['ngAnimate'])
         .directive('sarshaSpinner', sarshaSpinner)
         .service('spinnerService', spinnerService);
 
@@ -12,11 +12,8 @@
                 active: '@'
             },
             transclude: true,
-            bindToController: true,
-            controllerAs: '$ctrl',
-            controller: angular.noop,
             template: `
-                <div class="sarsha-spinner-container" ng-show="$ctrl.active">
+                <div class="sarsha-spinner-container" ng-if="active">
                     <div class="sarsha-spinner">
                         <div ng-transclude>
                            <div class="spinner">
@@ -30,7 +27,7 @@
                     </div>
                 </div>
             `,
-            link: function (scope, elm, attrs, ctrl) {
+            link: function (scope, elm, attrs) {
                 var parent = elm.parent();
                 var parentPosition = parent.position;
 
@@ -43,14 +40,14 @@
                     parent.css('position', 'relative');
 
                 function show() {
-                    ctrl.active = true;
+                    scope.active = true;
                 }
 
                 function close() {
-                    ctrl.active = false;
+                    scope.active = false;
                 }
 
-                spinnerService.register(ctrl.name, spinnerScope);
+                spinnerService.register(scope.name, spinnerScope);
             }
         }
     }
@@ -61,20 +58,43 @@
 
         service.show = show;
         service.close = close;
+        service.showAll = showAll;
+        service.closeAll = closeAll;
         service.register = register;
+        service.unregister = unregister;
 
         return service;
 
         function show(name) {
-            spinners[name].show()
+            if (spinners[name])
+                spinners[name].show()
         }
 
         function close(name) {
-            spinners[name].close();
+            if (spinners[name])
+                spinners[name].close();
+        }
+
+        function showAll() {
+            for (var name in spinners) {
+                if (spinners[name])
+                    spinners[name].show();
+            }
+        }
+
+        function closeAll() {
+            for (var name in spinners) {
+                if (spinners[name])
+                    spinners[name].close();
+            }
         }
 
         function register(name, spinnerScope) {
             spinners[name] = spinnerScope;
+        }
+
+        function unregister(name) {
+            spinners[name] = null;
         }
     }
 })();

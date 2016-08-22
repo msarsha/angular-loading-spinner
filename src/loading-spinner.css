@@ -4,32 +4,39 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(92, 88, 88, 0.83);
+    background: rgba(227, 223, 223, 0.47);
     z-index: 99999;
     color: white; 
     text-align: center;
 }
 
-.sarsha-spinner{
-    
+.sarsha-spinner-container.ng-enter, .sarsha-spinner-container.ng-leave {
+  transition:all ease-in-out 0.4s;
 }
 
-/*.sarsha-spinner::before{
-    content: 'Icon';
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    top: -20px;
-    transform: translate(50%);
-}*/
+.sarsha-spinner-container.ng-enter,
+.sarsha-spinner-container.ng-leave.ng-leave-active {
+  opacity:0;
+}
 
+.sarsha-spinner-container.ng-leave,
+.sarsha-spinner-container.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.sarsha-spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .spinner {
     margin: 0 auto;
-  width: 50px;
-  height: 40px;
-  text-align: center;
-  font-size: 10px;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
 }
 
 .spinner > div {
