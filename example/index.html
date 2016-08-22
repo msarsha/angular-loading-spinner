@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="../src/loading-spinner.css">
+    <style>
+        .content {
+            background: rgb(20, 56, 170);
+            height: 100px;
+            width: 400px;
+            margin: 15px auto;
+            color: red;
+            /*text-align: center;*/
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body ng-app="app" ng-controller="appCtrl as $ctrl">
+    <button ng-click="$ctrl.open('spinner1')">open 1</button>
+    <button ng-click="$ctrl.close('spinner1')">close 1</button>
+    <div class="content">
+        <div>
+            <span>Content 1</span>
+        </div>
+        <sarsha-spinner name="spinner1">
+           <span>This is custom content</span>
+           <span>Whoo hoooo !</span>
+        </sarsha-spinner>
+    </div>
+    <button ng-click="$ctrl.open('spinner2')">open 1</button>
+    <button ng-click="$ctrl.close('spinner2')">close 1</button>
+    <div class="content">
+        Content 2
+        <sarsha-spinner name="spinner2"></sarsha-spinner>
+    </div>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../src/loading-spinner.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
