@@ -1,9 +1,12 @@
+require('./loading-spinner.css');
+
 (function () {
     angular
         .module('sarsha.spinner', ['ngAnimate'])
         .directive('sarshaSpinner', sarshaSpinner)
         .service('spinnerService', spinnerService);
 
+    sarshaSpinner.$inject = ['spinnerService'];
     function sarshaSpinner(spinnerService) {
         return {
             restrict: 'E',
@@ -12,21 +15,21 @@
                 active: '@'
             },
             transclude: true,
-            template: `
-                <div class="sarsha-spinner-container" ng-if="active">
-                    <div class="sarsha-spinner">
-                        <div ng-transclude>
-                           <div class="spinner">
-                                <div class="rect1"></div>
-                                <div class="rect2"></div>
-                                <div class="rect3"></div>
-                                <div class="rect4"></div>
-                                <div class="rect5"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `,
+            template: [
+                '<div class="sarsha-spinner-container" ng-if="active">',
+                '<div class="sarsha-spinner">',
+                '<div ng-transclude>',
+                '<div class="spinner">',
+                '<div class="rect1"></div>',
+                '<div class="rect2"></div>',
+                '<div class="rect3"></div>',
+                '<div class="rect4"></div>',
+                '<div class="rect5"></div>',
+                '</div>',
+                '</div>',
+                '</div>',
+                '</div>'
+            ].join(" "),
             link: function (scope, elm, attrs) {
                 var parent = elm.parent();
                 var parentPosition = parent.position;

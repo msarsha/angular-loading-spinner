@@ -11,5 +11,12 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-animate": "^1.5.8"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "browserify-css": "^0.9.1",
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^2.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
