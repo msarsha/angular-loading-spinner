@@ -43,7 +43,7 @@ Place as many spinners as you like
 
 ### Controlling the Spinners
 
-Manualy control the spinners using the `spinnerService`
+#### Manualy control the spinners using the `spinnerService`
 
 ````javascript
   angular.controller('ctrl', function(spinnerService){
@@ -61,7 +61,7 @@ Manualy control the spinners using the `spinnerService`
   })
 ````
 
-Let the `spinnerHttpInterceptor` control the spinners
+#### Let the `spinnerHttpInterceptor` control the spinners
 
 Add the `spinnerHttpInterceptor` to your module config
 ````javascipt
