@@ -29,6 +29,10 @@
 
 <body ng-app="app" ng-controller="appCtrl as $ctrl">
     <div>
+        <button ng-click="$ctrl.startHttp('spinner1')">start http call 1</button>
+        <button ng-click="$ctrl.startHttp('spinner2')">start http call 2</button>
+    </div>
+    <div>
         <button ng-click="$ctrl.spinner.showAll()">show all</button>
         <button ng-click="$ctrl.spinner.closeAll()">close all</button>
     </div>
@@ -66,9 +70,9 @@
             </tbody>
         </table>
     </div>
-    <script src="angular.min.js"></script>
+    <script src="angular.js"></script>
     <script src="angular-animate.min.js"></script>
-    <script src="loading-spinner.min.js"></script>
+    <script src="../src/loading-spinner.js"></script>
     <script src="app.js"></script>
 </body>
 

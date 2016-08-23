@@ -1,18 +1,18 @@
-require('./loading-spinner.css');
+//require('./loading-spinner.css');
 
 (function () {
     angular
         .module('sarsha.spinner', ['ngAnimate'])
         .directive('sarshaSpinner', sarshaSpinner)
-        .service('spinnerService', spinnerService);
+        .service('spinnerService', spinnerService)
+        .factory('spinnerHttpInterceptor', spinnerHttpInterceptor);
 
     sarshaSpinner.$inject = ['spinnerService'];
     function sarshaSpinner(spinnerService) {
         return {
             restrict: 'E',
             scope: {
-                name: '@',
-                active: '@'
+                name: '@'
             },
             transclude: true,
             template: [
@@ -31,6 +31,8 @@ require('./loading-spinner.css');
                 '</div>'
             ].join(" "),
             link: function (scope, elm, attrs) {
+                scope.active = false;
+
                 var parent = elm.parent();
                 var parentPosition = parent.position;
 
@@ -98,6 +100,70 @@ require('./loading-spinner.css');
 
         function unregister(name) {
             spinners[name] = null;
+        }
+    }
+
+    spinnerHttpInterceptor.$inject = ['spinnerService', '$q'];
+    function spinnerHttpInterceptor(spinnerService, $q) {
+
+        var activeSpinners = {};
+
+        return {
+            'request': function (config) {
+                handleRequest(config);
+                return config;
+            },
+            'requestError': function (rejection) {
+                handleResponse(rejection.config);
+                return $q.reject(rejection);
+            },
+            'response': function (response) {
+                handleResponse(response.config);
+                return response;
+            },
+            'responseError': function (rejection) {
+                handleResponse(rejection.config);
+                return $q.reject(rejection);
+            }
+        }
+
+        function handleRequest(config) {
+            var spinner = config.spinner,
+                url = config.url;
+
+            if (!spinner) {
+                activeSpinners[url] = 'all';
+                spinnerService.showAll();
+                return;
+            }
+
+            activeSpinners[url] = spinner;
+
+            if (Array.isArray(spinner)) {
+                spinner.forEach(function (name) {
+                    spinnerService.show(name);
+                })
+            } else {
+                spinnerService.show(spinner);
+            }
+
+        }
+
+        function handleResponse(config) {
+            var url = config.url;
+            var spinner = activeSpinners[url];
+
+            if (spinner === 'all') {
+                spinnerService.closeAll();
+            } else if (Array.isArray(spinner)) {
+                spinner.forEach(function (name) {
+                    spinnerService.close(name);
+                })
+            } else {
+                spinnerService.close(spinner);
+            }
+
+            activeSpinners[url] = null;
         }
     }
 })();
