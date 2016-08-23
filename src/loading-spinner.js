@@ -31,7 +31,7 @@
                 var parent = elm.parent();
                 var parentPosition = parent.position;
 
-                var spinnerScope = {
+                var spinnerContext = {
                     show: show,
                     close: close
                 }
@@ -47,7 +47,7 @@
                     scope.active = false;
                 }
 
-                spinnerService.register(scope.name, spinnerScope);
+                spinnerService.register(scope.name, spinnerContext);
             }
         }
     }
@@ -89,8 +89,8 @@
             }
         }
 
-        function register(name, spinnerScope) {
-            spinners[name] = spinnerScope;
+        function register(name, spinnerContext) {
+            spinners[name] = spinnerContext;
         }
 
         function unregister(name) {

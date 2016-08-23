@@ -12,9 +12,17 @@
             margin: 15px auto;
             color: red;
         }
-
-        sarsha-spinner span{
+        
+        sarsha-spinner span {
             display: block;
+        }
+        
+        table {
+            margin-top: 15px;
+        }
+
+        table td{
+            padding: 10px;
         }
     </style>
 </head>
@@ -24,8 +32,10 @@
         <button ng-click="$ctrl.spinner.showAll()">show all</button>
         <button ng-click="$ctrl.spinner.closeAll()">close all</button>
     </div>
-    <button ng-click="$ctrl.open('spinner1')">open 1</button>
-    <button ng-click="$ctrl.close('spinner1')">close 1</button>
+    <div>
+        <button ng-click="$ctrl.spinner.show('spinner1')">open 1</button>
+        <button ng-click="$ctrl.spinner.close('spinner1')">close 1</button>
+    </div>
     <div class="content">
         <div>
             <span>Content 1</span>
@@ -35,11 +45,26 @@
             <span>Whoo hoooo !</span>
         </sarsha-spinner>
     </div>
-    <button ng-click="$ctrl.open('spinner2')">open 2</button>
-    <button ng-click="$ctrl.close('spinner2')">close 2</button>
-    <div class="content">
+    <button ng-click="$ctrl.spinner.show('spinner2')">open 2</button>
+    <button ng-click="$ctrl.spinner.close('spinner2')">close 2</button>
+    <div>
         <sarsha-spinner name="spinner2"></sarsha-spinner>
-        Content 2
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Data</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in $ctrl.data">
+                    <td>{{row.title}}</td>
+                    <td>{{row.data}}</td>
+                    <td>{{row.date | date}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.min.js"></script>

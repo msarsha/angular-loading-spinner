@@ -4,7 +4,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(227, 223, 223, 0.47);
+    background: rgba(227, 223, 223, 0.67);
     z-index: 99999;
     color: white; 
     text-align: center;
@@ -40,7 +40,7 @@
 }
 
 .spinner > div {
-  background-color: #333;
+  background-color: #6795b4;
   height: 100%;
   width: 6px;
   display: inline-block;
