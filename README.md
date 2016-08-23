@@ -7,7 +7,7 @@ __DEMO:__ https://sarsha17.github.io/angular-spinner/
 Clone the repo and run `npm install` to install dependencies and then `gulp` to build;
 
 ### How to use:
-(default spinner template)
+default spinner template
 
 ````html
 <div>
@@ -16,7 +16,20 @@ Clone the repo and run `npm install` to install dependencies and then `gulp` to 
 </div>
 ````
 
-You can place as many spinners as you like
+Use your own template:
+
+````html
+<div>
+  Your content here
+  <sarsha-spinner name="spinner1">
+    <div>
+      <span>MY OWN TEMPLATE !!</span>
+    </div>
+  </sarsha-spinner>
+</div>
+````
+
+Place as many spinners as you like
 ````html
 <div>
   Your content here
@@ -28,8 +41,9 @@ You can place as many spinners as you like
 </div>
 ````
 
+### Controlling the Spinners
 
-Control the spinner using the `spinnerService`
+Manualy control the spinners using the `spinnerService`
 
 ````javascript
   angular.controller('ctrl', function(spinnerService){
@@ -47,15 +61,35 @@ Control the spinner using the `spinnerService`
   })
 ````
 
-You can use your own template:
+Let the `spinnerHttpInterceptor` control the spinners
 
-````html
-<div>
-  Your content here
-  <sarsha-spinner name="spinner1">
-    <div>
-      <span>MY OWN TEMPLATE !!</span>
-    </div>
-  </sarsha-spinner>
-</div>
+Add the `spinnerHttpInterceptor` to your module config
+````javascipt
+  angular
+    .module('app', [])
+    .config(function($httpProvider){
+      $httpProvider.interceptors.push('spinnerHttpInterceptor');
+    })
+````
+
+The default behavior of the `spinnerHttpInterceptor` is to show and close all existing spinners.
+
+You can tell it which spinner is related to the http request by adding the `spinner` object to the `$http` config.
+
+The `spinner` object can be either a `string` for a single spinner or an `Array` for number of spinners.
+
+````javascript
+  angular.controller('ctrl', function($http){
+    this.doSomething = function(){
+      $http.get('http://url.com', {
+        spinner: 'spinner1'
+      }) 
+    }
+    
+    this.doSomething = function(){
+      $http.get('http://url.com', {
+        spinner: ['spinner1', 'spinner2']
+      }) 
+    }
+  })
 ````
