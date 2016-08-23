@@ -1,4 +1,4 @@
-//require('./loading-spinner.css');
+require('./loading-spinner.css');
 
 (function () {
     angular
