@@ -17,7 +17,7 @@ angular.module('app', ['sarsha.spinner'])
 ````
 load angular-animate in your html
 ````html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.min.js"></script>
 ````
 
 
