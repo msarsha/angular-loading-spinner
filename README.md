@@ -9,7 +9,7 @@ Clone the repo and run `npm install` to install dependencies and then `gulp` to 
 ### Dependencies:
 `angular-animate`
 
-### How to use:
+### Setup:
 
 add spinner module as dependency
 ````javascript
@@ -20,6 +20,8 @@ load angular-animate in your html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-animate.min.js"></script>
 ````
 
+
+### How to use:
 
 Use the default spinner template
 
