@@ -7,7 +7,13 @@ __DEMO:__ https://sarsha17.github.io/angular-spinner/
 Clone the repo and run `npm install` to install dependencies and then `gulp` to build;
 
 ### How to use:
-default spinner template
+
+add spinner module as dependency
+````javascript
+angular.module('app', ['sarsha.spinner'])
+````
+
+Use the default spinner template
 
 ````html
 <div>
