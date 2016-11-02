@@ -6,6 +6,9 @@ __DEMO:__ https://sarsha17.github.io/angular-spinner/
 ### Build
 Clone the repo and run `npm install` to install dependencies and then `gulp` to build;
 
+### Dependencies:
+`angular-animate`
+
 ### How to use:
 
 add spinner module as dependency
