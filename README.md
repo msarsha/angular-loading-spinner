@@ -4,7 +4,7 @@ Loading spinner for AngularJS
 __DEMO:__ https://msarsha.github.io/angular-spinner/
 
 ### Installing
-znpm i sarsha-loading-spinner`
+`npm i sarsha-loading-spinner`
 
 ### Build
 Clone the repo and run `npm install` to install dependencies and then `gulp` to build;
